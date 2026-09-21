@@ -31,15 +31,15 @@ const defaultGift: GiftData = {
   wish: 'Aku hanya menyebut namamu dalam doa-doa yang sederhana. Meminta agar hidupmu dipenuhi hal-hal baik, agar langkahmu selalu dijaga, dan agar hatimu dipertemukan dengan kebahagiaan yang pantas kamu dapatkan. Jika suatu hari waktu mengizinkan jalan kita bertemu, semoga itu terjadi pada waktu yang baik—saat kita tidak saling menemukan karena kebetulan, tetapi karena Tuhan memang mempertemukan.',
   theme: 'blush',
   photos: [
-    { src: '/decorations/memory-jar.png', caption: 'First love 🤍' },
-    { src: '/decorations/vintage-heart-frame.png', caption: '💗' },
-    { src: '/decorations/scrapbook-collage.png', caption: '💜' },
-    { src: '/journey/birthday-bouquet.webp', caption: '💚' },
+    { src: '/memories/suci-love.jpeg', caption: 'I love you, Kakak 🤍' },
+    { src: '/memories/suci-eyes.jpeg', caption: 'Kerling matamu bagaikan api.' },
+    { src: '/memories/suci-thank-you.jpeg', caption: 'Thank you for coming into my life.' },
+    { src: '/memories/suci-beauty.jpeg', caption: 'Kecantikanmu tak cukup untuk dilisankan.' },
   ],
 };
 
 const polaroidHearts = ['💗', '💜', '💙', '💚'];
-const storyPreviewPhoto = '/journey/birthday-bouquet.webp';
+const storyPreviewPhoto = '/memories/suci-story-preview.jpeg';
 
 const themes: Record<ThemeId, { name: string; accent: string; soft: string; ink: string; glow: string }> = {
   blush: { name: 'Blush Garden', accent: '#d94d7b', soft: '#fff3f6', ink: '#4d2431', glow: '#ffc4d7' },
@@ -102,7 +102,7 @@ const transitionFlowers = Array.from({ length: 36 }, (_, index) => {
 const musicTracks = [
   { title: 'Penjaga Hati', mood: 'Nadhif Basalamah', src: '/music/penjaga-hati.mp3' },
   { title: 'Daur Hidup', mood: 'Donne Maula', src: '/music/daur-hidup.mp3' },
-  { title: 'First Love', mood: 'Shania Yan', src: '/music/first-love.mp3' },
+  { title: 'First Love', mood: 'Ardhito Pramono', src: '/music/first-love-ardhito.mp3' },
 ];
 
 class MelodyPlayer {
@@ -741,7 +741,7 @@ export default function Home() {
 
           <section className="memory-play story-section">
             <div className="interactive-heading"><span className="eyebrow">02 · flip our memories</span><h2>Balik polaroidnya.</h2><p>Setiap foto menyimpan satu love khusus untukmu.</p></div>
-            <div className="polaroid-deck">{gift.photos.map((photo, index) => <button className={`flip-polaroid polaroid-${index + 1} ${flippedMemories.includes(index) ? 'flipped' : ''}`} key={index} onClick={() => flipMemory(index)} aria-label={`${flippedMemories.includes(index) ? 'Lihat foto' : 'Lihat love di balik'} kenangan ${index + 1}`} aria-pressed={flippedMemories.includes(index)}><span className="polaroid-inner"><span className="polaroid-front"><img src={photo.src} alt={photo.caption} loading="lazy" decoding="async" onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = defaultGift.photos[index].src; }} /><small>ketuk untuk membalik ↻</small></span><span className={`polaroid-back polaroid-back-${index + 1}`}><span className="polaroid-love" aria-hidden="true">{polaroidHearts[index]}</span></span></span></button>)}</div>
+            <div className="polaroid-deck">{gift.photos.map((photo, index) => <button className={`flip-polaroid polaroid-${index + 1} ${flippedMemories.includes(index) ? 'flipped' : ''}`} key={index} onClick={() => flipMemory(index)} aria-label={`${flippedMemories.includes(index) ? 'Lihat foto' : 'Lihat caption di balik'} kenangan ${index + 1}`} aria-pressed={flippedMemories.includes(index)}><span className="polaroid-inner"><span className="polaroid-front"><img src={photo.src} alt={photo.caption} loading="lazy" decoding="async" onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = defaultGift.photos[index].src; }} /><small>ketuk untuk membalik ↻</small></span><span className={`polaroid-back polaroid-back-${index + 1}`}><span className="polaroid-love" aria-hidden="true">{polaroidHearts[index]}</span><p className="polaroid-caption">{photo.caption}</p><small>ketuk untuk kembali ↻</small></span></span></button>)}</div>
           </section>
 
           <section className="envelope-story story-section">
